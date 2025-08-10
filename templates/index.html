@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DSEdify — LMS Analytics Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>DSEdify — LMS Analytics</h1>
+  </header>
+
+  <section class="controls">
+    <div class="kpis">
+      <div><strong>Total Users</strong><div id="kpi-total">—</div></div>
+      <div><strong>Most Popular</strong><div id="kpi-popular">—</div></div>
+      <div><strong>Avg Time (mins)</strong><div id="kpi-avg">—</div></div>
+      <div><strong>Most / Least</strong><div id="kpi-mostleast">—</div></div>
+    </div>
+
+    <div class="filters">
+      <label>Course:
+        <select id="courseFilter"><option value="__all">All</option></select>
+      </label>
+      <button id="clearFilter">Clear</button>
+      <button id="refreshData">Refresh</button>
+    </div>
+  </section>
+
+  <main class="grid">
+    <div class="card">
+      <h3>Avg Time per Course</h3>
+      <canvas id="chartAvgTime"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Completion Distribution</h3>
+      <canvas id="chartCompletion"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Device Usage</h3>
+      <canvas id="chartDevice"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Monthly Access Trend</h3>
+      <canvas id="chartTrend"></canvas>
+    </div>
+
+    <div class="card wide">
+      <h3>Course Completion % (by course)</h3>
+      <div id="completionTableWrap"><table id="completionTable"><thead><tr><th>Course</th><th>Total</th><th>Completed</th><th>%</th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <div class="card wide">
+      <h3>Detailed Records (latest)</h3>
+      <div id="rawWrap"><table id="rawTable"><thead><tr><th>UserID</th><th>Course</th><th>AccessDate</th><th>Status</th><th>Time</th><th>Device</th><th>Country</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </main>
+
+  <footer>Built with Python · Flask · Pandas · Chart.js</footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
